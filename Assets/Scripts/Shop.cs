@@ -13,7 +13,7 @@ public class Shop : MonoBehaviour
     {
         for (int i = 0; i < _weapons.Count; i++)
         {
-            AddItem(_weapons[i]);   
+            AddItem(_weapons[i]);
         }
     }
 
@@ -34,9 +34,12 @@ public class Shop : MonoBehaviour
     {
         if (weapon.Price <= _player.Money)
         {
-            _player.BuyWeapon(weapon);
-            weapon.Buy();
-            view.SellButtonClick -= OnSellButtonCLick;
+            if (weapon.IsBuyed == false)
+            {
+                _player.BuyWeapon(weapon);
+                weapon.Buy();
+                view.SellButtonClick -= OnSellButtonCLick;
+            }
         }
     }
 }
